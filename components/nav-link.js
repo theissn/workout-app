@@ -11,8 +11,8 @@ export default function NavLink({ children, name }) {
   return (
     <Link href={`${name}`}>
       <a
-        className={`w-1/3 border ${
-          isActive(router.pathname, name) ? "bg-blue-400 text-white" : ""
+        className={`w-1/3 text-white ${
+          isActive(router.pathname, name) ? "bg-blue-400" : ""
         }`}
       >
         <div className="text-center flex flex-col items-center">{children}</div>

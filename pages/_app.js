@@ -4,7 +4,7 @@ import "../styles/globals.css";
 function WorkoutApp({ Component, pageProps }) {
   return (
     <div className="">
-      <nav className="flex fixed w-full bottom-0">
+      <nav className="flex fixed w-full bottom-0 bg-gray-500">
         <NavLink name="/">
           <div className="mb-2">Workouts</div>
           <svg

@@ -1,6 +1,14 @@
-export default function Fab() {
+import { useRouter } from "next/router";
+
+export default function Fab({ path }) {
+  const router = useRouter();
+
+  const goToRoute = () => {
+    router.push(path)
+  }
+
   return (
-    <button className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+    <button onClick={goToRoute} className="p-0 w-12 h-12 bg-blue-400 rounded-full active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
       <svg
         viewBox="0 0 20 20"
         enableBackground="new 0 0 20 20"

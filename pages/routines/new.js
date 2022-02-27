@@ -5,6 +5,7 @@ import { db } from "../../helpers/db";
 
 export default function New() {
   const [routine, setRoutine] = useState([]);
+  const [name, setName] = useState(null);
   const [addToRoutine, setAddToRoutine] = useState(null);
   const [newExcercise, setNewExcecise] = useState(null);
   const [delExcercise, setDelExcecise] = useState(null);
@@ -56,15 +57,8 @@ export default function New() {
   };
 
   const saveRoutine = async () => {
-    console.log({
-      name: "New Routine",
-      excercises: routine ? routine.join(",") : "",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
     await db.routines.add({
-      name: "New Routine",
+      name: name,
       excercises: routine.join(","),
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -76,7 +70,7 @@ export default function New() {
   return (
     <main className="p-4">
       <h1 className="text-2xl mb-4">Create new routine</h1>
-      <input type="text" className="form-input w-full" placeholder="Name" />
+      <input type="text" className="form-input w-full" placeholder="Name" onChange={e => setName(e.target.value)} />
 
       <ul className="my-4 mx-4">
         {routine.map((excercise) => (
