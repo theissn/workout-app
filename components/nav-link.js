@@ -11,7 +11,7 @@ export default function NavLink({ children, name }) {
   return (
     <Link href={`${name}`}>
       <a
-        className={`w-1/3 text-white ${
+        className={`w-1/3 text-white p-2 ${
           isActive(router.pathname, name) ? "bg-blue-400" : ""
         }`}
       >
