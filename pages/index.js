@@ -1,6 +1,10 @@
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "../helpers/db";
 
 export default function Home() {
-  return (
-    <>Hello</> 
-  )
+  const workouts = useLiveQuery(async () => {
+    return await db.workouts.orderBy('createdAt', 'desc').toArray();
+  });
+
+  return <>Test</>;
 }
