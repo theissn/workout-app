@@ -9,7 +9,11 @@ export default function Home() {
     return await db.routines.orderBy("createdAt", "desc").toArray();
   });
 
-  if (!routines) {
+  const workouts = useLiveQuery(async () => {
+    return await db.workouts.orderBy("startedAt", "desc").toArray();
+  });
+
+  if (!routines || !workouts) {
     return <main>Loading...</main>;
   }
 
@@ -19,6 +23,11 @@ export default function Home() {
       query: { routine: id },
     })
   }
+
+  const getRoutineName = (id) => {
+    return routines.find((r) => r.id === parseInt(id, 10))
+      .name;
+  };
 
   return (
     <main className="p-4">
@@ -31,6 +40,15 @@ export default function Home() {
           ))}
         </select>
       </div>
+
+      <h1 className="text-2xl mb-2 mt-6">Workouts</h1>
+      <ul className="my-4 mx-4">
+        {workouts.map((workout) => (
+          <li className="list-decimal mx-2" key={workout.id}>
+            {getRoutineName(workout.routineID)} workout on {workout.startedAt.toDateString()}
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

@@ -6,9 +6,7 @@ import { db } from "../../helpers/db";
 export default function New() {
   const [routine, setRoutine] = useState([]);
   const [name, setName] = useState(null);
-  const [addToRoutine, setAddToRoutine] = useState(null);
   const [newExcercise, setNewExcecise] = useState(null);
-  const [delExcercise, setDelExcecise] = useState(null);
 
   const router = useRouter();
 
@@ -20,14 +18,13 @@ export default function New() {
     return <main>Loading...</main>;
   }
 
-  const addExcersiseToRoutine = async () => {
-    if (!addToRoutine) {
+  const addExcersiseToRoutine = async (excercise) => {
+    if (!excercise) {
       alert("Please select an excercise to add to the routine.");
       return;
     }
 
-    setRoutine([...routine, addToRoutine]);
-    setAddToRoutine(null);
+    setRoutine([...routine, excercise]);
   };
 
   const addExcersise = async () => {
@@ -42,14 +39,14 @@ export default function New() {
     });
   };
 
-  const destroyExcersise = async () => {
-    if (!delExcercise) {
-      alert("Please select an excercise to delete");
-      return;
-    }
+  // const destroyExcersise = async () => {
+  //   if (!delExcercise) {
+  //     alert("Please select an excercise to delete");
+  //     return;
+  //   }
 
-    await db.excercises.where("id").equals(parseInt(delExcercise, 10)).delete();
-  };
+  //   await db.excercises.where("id").equals(parseInt(delExcercise, 10)).delete();
+  // };
 
   const getExcerciseName = (id) => {
     return excercises.find((excercise) => excercise.id === parseInt(id, 10))
@@ -90,7 +87,7 @@ export default function New() {
       <h2 className="text-xl mt-6 mb-2">Add to routine</h2>
       <div className="flex space-x-4">
         <select
-          onChange={(e) => setAddToRoutine(e.target.value)}
+          onChange={(e) => addExcersiseToRoutine(e.target.value)}
           className="w-full"
         >
           <option disabled selected>
@@ -101,28 +98,7 @@ export default function New() {
               {excercise.name}
             </option>
           ))}
-          {excercises.length === 0 && (
-            <option disabled selected>
-              No excercises
-            </option>
-          )}
         </select>
-        <button onClick={addExcersiseToRoutine}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </button>
       </div>
 
       <h2 className="text-xl mt-6 mb-2">Add new excercise</h2>
@@ -150,7 +126,7 @@ export default function New() {
         </button>
       </div>
 
-      <h2 className="text-xl mt-6 mb-2">Remove excercise</h2>
+      {/* <h2 className="text-xl mt-6 mb-2">Remove excercise</h2>
       <div className="flex space-x-4">
         <select
           onChange={(e) => setDelExcecise(e.target.value)}
@@ -187,8 +163,8 @@ export default function New() {
               d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-        </button>
-      </div>
+        </button> */}
+      {/* </div> */}
     </main>
   );
 }

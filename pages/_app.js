@@ -80,8 +80,10 @@ function WorkoutApp({ Component, pageProps }) {
           </svg>
         </NavLink>
       </nav>
-      <Component {...pageProps} />
-    </div>
+      
+      <div className="overflow-scroll max-h-[90vh]">
+        <Component {...pageProps} /></div>
+      </div>
   );
 }
 
