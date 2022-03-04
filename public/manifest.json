@@ -1,6 +1,6 @@
 {
-  "name": "PWA App",
-  "short_name": "App",
+  "name": "Workout App",
+  "short_name": "Workout",
   "icons": [
     {
       "src": "/icons/android-launchericon-144-144.png",
