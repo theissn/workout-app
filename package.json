@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "dexie": "^3.2.1",
+    "dexie-export-import": "^1.0.3",
     "dexie-react-hooks": "^1.1.1",
     "next": "12.1.0",
     "next-pwa": "^5.4.5",
